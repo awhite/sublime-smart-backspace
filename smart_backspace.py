@@ -16,7 +16,6 @@ class SmartBackspaceCommand(sublime_plugin.TextCommand):
 				left_contents = self.view.substr(left_region)
 				line_above = self.view.full_line(left_region.begin() - 1)
 				above_contents = self.view.substr(line_above).strip()
-				print(above_contents)
 
 				if len(line_contents.strip()) == 0: # if trimmed line empty
 					if len(above_contents) == 0: # if the above line is empty

@@ -10,7 +10,7 @@ Manually:
 
 ### Usage
 
-This plugin is automatically mapped to the `backspace` button. `backspace`'s original functionality can be accessed through `shift+backspace`
+This plugin is automatically mapped to the `backspace` button. Original functionality of `backspace` can be accessed through `shift+backspace`
 
 ---
 Requires Sublime Text 3

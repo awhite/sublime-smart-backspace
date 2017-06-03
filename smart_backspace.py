@@ -2,6 +2,21 @@ import sublime
 import sublime_plugin
 import re
 
+class NormalBackspaceCommand(sublime_plugin.TextCommand):
+	def run(self, edit):
+		if len(self.view.sel()) == 1:
+			region = self.view.sel()[0]
+			if not(region.empty()):
+				self.view.run_command('left_delete')
+			else:
+				caret = region.begin()
+				leftChar = self.view.substr(sublime.Region(caret - 1, caret))
+				rightChar = self.view.substr(sublime.Region(caret, caret + 1))
+				if (isPair(leftChar, rightChar)):
+					self.view.run_command('run_macro_file', {"file": "res://Packages/Default/Delete Left Right.sublime-macro"})
+				else:
+					self.view.run_command('left_delete')
+
 class SmartBackspaceCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		if len(self.view.sel()) == 1:
@@ -28,7 +43,7 @@ class SmartBackspaceCommand(sublime_plugin.TextCommand):
 						self.view.sel().clear();
 						self.view.sel().add(sublime.Region(point_after_delete))
 				elif len(left_contents) == 0: # if untrimmed region left is 0
-					self.view.run_command('left_delete')
+					self.view.run_command('normal_backspace')
 				elif len(left_contents.strip()) == 0: # if trimmed region left of cursor empty
 					if full_line.begin() != 0: # if there is a line above
 						if len(above_contents) == 0: # if the above line is empty
@@ -48,6 +63,20 @@ class SmartBackspaceCommand(sublime_plugin.TextCommand):
 					else:
 						self.view.run_command('run_macro_file', {"file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"})
 				else:
-					self.view.run_command('left_delete')
+					self.view.run_command('normal_backspace')
 		else:
-			self.view.run_command('left_delete')
+			self.view.run_command('normal_backspace')
+
+def isPair(a, b):
+	if a == '{':
+		return b == '}'
+	elif a == '\'' or a == '`' or a == '"':
+		return b == a
+	elif a == '<':
+		return b == '>'
+	elif a == '[':
+		return b == ']'
+	elif a == '(':
+		return b == ')'
+	else:
+		return False

@@ -3,7 +3,10 @@ Adds smart backspace capability found in JetBrains IDEs to Sublime Text
 
 ### Installation
 
-[Package Control](https://packagecontrol.io) support coming soon
+[Package Control](https://packagecontrol.io):
+* Open command palette (`Ctrl/Cmd+shift+p`)
+* Select `Package Control: Install Package`
+* Select `Smart Backspace`
 
 Manually:
 * Clone or download this repository into your packages folder (in Sublime, **Preferences | Browse Packages...**)

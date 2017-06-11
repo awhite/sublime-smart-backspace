@@ -1,4 +1,4 @@
 [
 	{ "keys": ["backspace"], "command": "smart_backspace" },
-	{ "keys": ["shift+backspace"], "command": "left_delete" }
+	{ "keys": ["shift+backspace"], "command": "normal_backspace" }
 ]

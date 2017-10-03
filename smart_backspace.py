@@ -21,8 +21,7 @@ class NormalBackspaceCommand(sublime_plugin.TextCommand):
 
 class SmartBackspaceCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		if len(self.view.sel()) == 1:
-			region = self.view.sel()[0]
+		for region in self.view.sel():
 			if not(region.empty()):	# if there is a selection
 				self.view.run_command('left_delete')
 			else:
@@ -66,8 +65,6 @@ class SmartBackspaceCommand(sublime_plugin.TextCommand):
 						self.view.run_command('run_macro_file', {"file": "res://Packages/Default/Delete to Hard BOL.sublime-macro"})
 				else:
 					self.view.run_command('normal_backspace')
-		else:
-			self.view.run_command('normal_backspace')
 
 def isPair(a, b):
 	if a == '{':

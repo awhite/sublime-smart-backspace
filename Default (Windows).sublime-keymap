@@ -5,7 +5,7 @@
 		"context": [
 			{
 				"key": "terminus_view",
-				"operand": false,
+				"operator": "not_equal",
 			}
 		]
 	},

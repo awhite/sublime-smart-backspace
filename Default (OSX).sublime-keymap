@@ -1,4 +1,13 @@
 [
-	{ "keys": ["backspace"], "command": "smart_backspace" },
+	{
+		"keys": ["backspace"],
+		"command": "smart_backspace",
+		"context": [
+			{
+				"key": "terminus_view",
+				"operand": false,
+			}
+		]
+	},
 	{ "keys": ["shift+backspace"], "command": "normal_backspace" }
 ]
